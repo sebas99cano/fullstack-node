@@ -1,9 +1,10 @@
 const express = require("express");
+const cors = require("cors");
 const logger = require("./loggerMiddleware");
 const app = express();
 
 app.use(express.json());
-
+app.use(cors());
 app.use(logger);
 
 let notes = [
@@ -68,7 +69,8 @@ app.use((request, response) => {
   });
 });
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
+
 app.listen(PORT, () => {
   console.log(`Server running in port ${PORT}`);
 });
